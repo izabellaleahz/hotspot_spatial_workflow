@@ -1,0 +1,8 @@
+version: 1.0
+workflows:
+  - subclass: WDL
+    primaryDescriptorPath: /hotspot_spatial.wdl
+    
+    authors:
+      - name: Izabella
+        email: izabella@mit.edu
