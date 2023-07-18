@@ -1,4 +1,4 @@
-version: main
+version: 1.0
 workflows:
   - subclass: WDL
     primaryDescriptorPath: /hotspot_spatial.wdl

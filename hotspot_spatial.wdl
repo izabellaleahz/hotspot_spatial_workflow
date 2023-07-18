@@ -1,4 +1,4 @@
-version main
+version 1.0
 workflow hotspot {
     input {
         String output_directory
