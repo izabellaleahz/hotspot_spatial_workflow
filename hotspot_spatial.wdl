@@ -67,11 +67,12 @@ task run_hotspot {
         import pickle
         jobs = ~{cpu} * 2
         adata = sc.read_h5ad("~{anndata_file}")
+        adata.layers["csc_counts"] = anndata.X.tocsc()
         hs = hotspot.Hotspot(
             adata,
-            layer_key="counts",
+            layer_key="csc_counts",
             model='~{hotspot_model}',
-            latent_obsm_key='~{pca_string}',
+            latent_obsm_key="spatial",
             umi_counts_obs_key="total_counts"
         )
         hs.create_knn_graph(weighted_graph=False, n_neighbors=~{n_neighbors})
