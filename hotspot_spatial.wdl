@@ -66,6 +66,7 @@ task run_hotspot {
         import matplotlib.pyplot as plt
         import pickle
         import scipy
+        import numpy as np
         jobs = ~{cpu} * 2
         adata = sc.read_h5ad("~{anndata_file}")
         adata.X = scipy.sparse.csc_matrix(adata.X)
