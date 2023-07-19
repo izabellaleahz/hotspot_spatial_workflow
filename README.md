@@ -9,6 +9,15 @@ coords = np.array((anndata.obs["X"],anndata.obs["Y"]))
 anndata.obsm["spatial"] = coords.T 
 ``` 
 
+Run squidpy spatial neighbors 
+
+```
+import squidpy as sq
+adata_spatial_neighbor = sq.gr.spatial_neighbors(
+    anndata, coord_type="generic", delaunay=True
+)
+```
+
 # From Hotspot documentation
 
 Alternative choices for 'model'

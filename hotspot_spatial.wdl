@@ -65,9 +65,13 @@ task run_hotspot {
         import hotspot
         import matplotlib.pyplot as plt
         import pickle
+        import scipy
         jobs = ~{cpu} * 2
         adata = sc.read_h5ad("~{anndata_file}")
-        adata.layers["csc_counts"] = anndata.X.tocsc()
+        adata.X = scipy.sparse.csc_matrix(adata.X)
+        adata.obs["total_counts"] = np.asarray(adata.X.sum(1)).ravel()
+        adata.layers["csc_counts"] = adata.X.tocsc()    
+        adata = adata[:, adata.X.sum(axis=0) > 0]
         hs = hotspot.Hotspot(
             adata,
             layer_key="csc_counts",
