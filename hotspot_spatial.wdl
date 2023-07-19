@@ -3,7 +3,7 @@ workflow hotspot {
     input {
         String output_directory
         File anndata_file
-        String pca_string = 'X_pca'
+        String obsm_key = 'X_pca'
         String hotspot_model = 'danb'
         Int n_neighbors = 30
         Int min_gene_threshold = 30
@@ -22,7 +22,7 @@ workflow hotspot {
         input:
             output_dir = output_directory_stripped,
             anndata_file = anndata_file,
-            pca_string = pca_string,
+            obsm_key = obsm_key,
             hotspot_model = hotspot_model,
             n_neighbors = n_neighbors,
             min_gene_threshold = min_gene_threshold,
@@ -43,7 +43,7 @@ task run_hotspot {
     input {
         String output_dir
         File anndata_file
-        String pca_string
+        String obsm_key
         String hotspot_model
         Int n_neighbors
         Int min_gene_threshold
@@ -76,7 +76,7 @@ task run_hotspot {
             adata,
             layer_key="csc_counts",
             model='~{hotspot_model}',
-            latent_obsm_key="spatial",
+            latent_obsm_key='~{obsm_key}',
             umi_counts_obs_key="total_counts"
         )
         hs.create_knn_graph(weighted_graph=False, n_neighbors=~{n_neighbors})

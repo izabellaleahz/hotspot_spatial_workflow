@@ -1,6 +1,11 @@
-# hotspot_spatial_workflow
-Expects spatial in obsm part of anndata object 
+# hotspot on genes 
+obsm_key can be either "X_pca" if used default scanpy pca function, or "X_pca_harmony" is batch correction was used. 
 
+# hotspot_spatial_workflow
+
+obsm_key is "spatial"
+
+Expects spatial in obsm part of anndata object 
 where spatial can be populated using the following: 
 given X and Y are stored in the metadata obs. 
 
@@ -8,9 +13,7 @@ given X and Y are stored in the metadata obs.
 coords = np.array((anndata.obs["X"],anndata.obs["Y"]))
 anndata.obsm["spatial"] = coords.T 
 ``` 
-
 Run squidpy spatial neighbors 
-
 ```
 import squidpy as sq
 adata_spatial_neighbor = sq.gr.spatial_neighbors(
