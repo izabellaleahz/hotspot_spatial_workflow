@@ -17,4 +17,4 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN python -m pip install --upgrade pip --no-cache-dir && \
     python -m pip install --upgrade setuptools wheel --no-cache-dir && \
-    python -m pip install 'scanpy[leiden]' tqdm hotspotsc scipy 
+    python -m pip install 'scanpy[leiden]' tqdm hotspotsc
